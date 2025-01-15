@@ -13,6 +13,19 @@ import java.io.IOException;
  * La clase donde se leé la principal escena de la aplicación
  */
 public class StartApplication extends Application  {
+
+    public Scene fxmlLoader(String pathScene,Stage primaryStage) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(pathScene));
+        Parent root = loader.load();
+
+        // Obtener el controlador y pasar el Stage principal
+        StartController controller = loader.getController();
+        controller.setPrimaryStage(primaryStage);
+
+        return new Scene(root);
+    }
+
     /**
      * Este método inicia la aplicación leyendo el Fxml inicial
      * @param stage
@@ -20,10 +33,8 @@ public class StartApplication extends Application  {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scenes/StartWindow.fxml"));
-        Parent root = fxmlLoader.load();
+        Scene scene = fxmlLoader("Scenes/StartWindow.fxml",stage);
 
-        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show(); // mostrar el escenario
     }

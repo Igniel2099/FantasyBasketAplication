@@ -20,6 +20,7 @@ public class StartController {
 
     // Método para cambiar de escena
     private void cambiarEscena(String pathScene) throws IOException {
+
         Scene newScene = new BuyWindow().fxmlLoader(pathScene,getPrimaryStage());  // Usamos BuyWindow para cargar la nueva escena
         primaryStage.setScene(newScene);
     }
@@ -28,6 +29,13 @@ public class StartController {
     @FXML
     public void handleStartClick(MouseEvent event) {
         System.out.println("¡Botón Start clickeado!");
+
+        try {
+
+            cambiarEscena("Scenes/HomeWindow.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
