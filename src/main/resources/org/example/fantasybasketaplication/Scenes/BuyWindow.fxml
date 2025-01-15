@@ -48,7 +48,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fantasybasketaplication.StartController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0"
+            prefWidth="950.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.fantasybasketaplication.controllers.BuyController">
    <stylesheets>
       <URL value="@../Scenes/style.css" />
    </stylesheets>
@@ -77,9 +79,9 @@
    <left>
       <VBox prefHeight="200.0" prefWidth="112.0" style="-fx-background-color: #999999;" BorderPane.alignment="CENTER">
          <children>
-            <StackPane prefHeight="88.0" prefWidth="97.0">
+            <StackPane prefHeight="88.0" prefWidth="97.0" styleClass="rect_bar">
                <children>
-                  <Pane prefHeight="88.0" prefWidth="97.0" style="-fx-background-color: #999999;" />
+                  <Pane prefHeight="88.0" prefWidth="97.0" />
                   <ImageView fx:id="buttonHome" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#HandleHomeClick" pickOnBounds="true" preserveRatio="true" styleClass="image-button">
                      <image>
                         <Image url="@../Images/iconHome.png" />
@@ -104,9 +106,9 @@
                   <Insets left="5.0" right="10.0" top="25.0" />
                </VBox.margin>
             </StackPane>
-            <StackPane prefHeight="88.0" prefWidth="97.0">
+            <StackPane prefHeight="88.0" prefWidth="97.0" styleClass="rect_bar">
                <children>
-                  <Pane prefHeight="88.0" prefWidth="97.0" style="-fx-background-color: #999999;">
+                  <Pane prefHeight="88.0" prefWidth="97.0">
                      <StackPane.margin>
                         <Insets />
                      </StackPane.margin>
