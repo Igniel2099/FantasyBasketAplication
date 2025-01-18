@@ -1,0 +1,90 @@
+[
+  {
+    "name": "LeBron James",
+    "position": "Alero",
+    "price": 45000.0,
+    "team": "Los Angeles Lakers",
+    "pathPhotoName": "/org/example/fantasybasketaplication/Images/players/LeBronJames.png",
+    "pathPhotoTeam": "/org/example/fantasybasketaplication/Images/logos/logoLakers.png"
+  },
+  {
+    "name": "Stephen Curry",
+    "position": "Base",
+    "price": 43000.0,
+    "team": "Golden State Warriors",
+    "pathPhotoName": "/org/example/fantasybasketaplication/Images/players/StephenCurry.png",
+    "pathPhotoTeam": "/org/example/fantasybasketaplication/Images/logos/logoGoldenStateWarriors.png"
+  },
+  {
+    "name": "Jayson Tatum",
+    "position": "Alero",
+    "price": 37500.0,
+    "team": "Boston Celtics",
+    "pathPhotoName": "/org/example/fantasybasketaplication/Images/players/JaysonTatum.png",
+    "pathPhotoTeam": "/org/example/fantasybasketaplication/Images/logos/logoBostonCeltics.png"
+  },
+  {
+    "name": "Zach LaVine",
+    "position": "Escolta",
+    "price": 25500.0,
+    "team": "Chicago Bulls",
+    "pathPhotoName": "/org/example/fantasybasketaplication/Images/players/ZachLaVine.png",
+    "pathPhotoTeam": "/org/example/fantasybasketaplication/Images/logos/logoChicagoBulls.png"
+  },
+  {
+    "name": "Bam Adebayo",
+    "position": "Pívot",
+    "price": 35200.0,
+    "team": "Miami Heat",
+    "pathPhotoName": "/org/example/fantasybasketaplication/Images/players/BamAdebayo.png",
+    "pathPhotoTeam": "/org/example/fantasybasketaplication/Images/logos/logoMiamiHeat.png"
+  },
+  {
+    "name": "James Harden",
+    "position": "Base",
+    "price": 42500.0,
+    "team": "Brooklyn Nets",
+    "pathPhotoName": "/org/example/fantasybasketaplication/Images/players/JamesHarden.png",
+    "pathPhotoTeam": "/org/example/fantasybasketaplication/Images/logos/logoBrooklynNets.png"
+  },
+  {
+    "name": "Luka Dončić",
+    "position": "Base",
+    "price": 41000.0,
+    "team": "Dallas Mavericks",
+    "pathPhotoName": "/org/example/fantasybasketaplication/Images/players/LukaDončić.png",
+    "pathPhotoTeam": "/org/example/fantasybasketaplication/Images/logos/logoDallasMavericks.png"
+  },
+  {
+    "name": "Devin Booker",
+    "position": "Escolta",
+    "price": 38000.0,
+    "team": "Phoenix Suns",
+    "pathPhotoName": "/org/example/fantasybasketaplication/Images/players/DevinBooker.png",
+    "pathPhotoTeam": "/org/example/fantasybasketaplication/Images/logos/logoPhoenixSuns.png"
+  },
+  {
+    "name": "Giannis Antetokounmpo",
+    "position": "Alero",
+    "price": 50000.0,
+    "team": "Milwaukee Bucks",
+    "pathPhotoName": "/org/example/fantasybasketaplication/Images/players/GiannisAntetokounmpo.png",
+    "pathPhotoTeam": "/org/example/fantasybasketaplication/Images/logos/logoMilwaukeeBucks.png"
+  },
+  {
+    "name": "Nikola Jokić",
+    "position": "Pívot",
+    "price": 47000.0,
+    "team": "Denver Nuggets",
+    "pathPhotoName": "/org/example/fantasybasketaplication/Images/players/NikolaJokić.png",
+    "pathPhotoTeam": "/org/example/fantasybasketaplication/Images/logos/logoDenverNuggets.png"
+  },
+  {
+    "name": "Anthony Davis",
+    "position": "Ala-Pívot",
+    "price": 40000.0,
+    "team": "Los Angeles Lakers",
+    "pathPhotoName": "/org/example/fantasybasketaplication/Images/players/AnthonyDavis.png",
+    "pathPhotoTeam": "/org/example/fantasybasketaplication/Images/logos/logoLakers.png"
+  }
+]
