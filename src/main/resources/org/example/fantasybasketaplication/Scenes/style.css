@@ -12,8 +12,6 @@
     -fx-opacity: 0.8;
 }
 
-
-
 .image-button:pressed{
     -fx-scale-x: 0.95;
     -fx-scale-y: 0.95;
@@ -22,4 +20,31 @@
 .main_content{
     -fx-background: transparent;
     -fx-background-color: transparent;
+}
+
+.button-buy:hover{
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0);
+}
+
+.button-buy:pressed{
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+.container-button{
+    -fx-cursor: hand;
+    -fx-opacity: 1.0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0);
+}
+
+.container-button:hover{
+    -fx-cursor: hand;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.container-button:pressed{
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
 }

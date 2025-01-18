@@ -8,6 +8,14 @@ public class Player {
     private String pathPhotoName;
     private String pathPhotoTeam;
 
+
+    public Player(String name, String position, Double price, String team) {
+        this.name = name;
+        this.position = position;
+        this.price = price;
+        this.team = team;
+    }
+
     public Player(String name, String position, Double price, String team, String pathPhotoName, String pathPhotoTeam) {
         this.name = name;
         this.position = position;

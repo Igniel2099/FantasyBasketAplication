@@ -3,18 +3,20 @@ package org.example.fantasybasketaplication.WindowsApp;
 
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.fantasybasketaplication.controllers.BuyController;
+import org.example.fantasybasketaplication.information.Player;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class BuyWindow extends StartWindow {
@@ -24,7 +26,44 @@ public class BuyWindow extends StartWindow {
         controller.setPrimaryStage(primaryStage);
     }
 
-    public HBox createCardPlayer( String name, String position, String price, String pathPhotoName, String pathPhotoTeam){
+    public String showConfirmationDialog() {
+        Stage dialogStage = new Stage();
+        dialogStage.initModality(Modality.APPLICATION_MODAL); // Bloquea la ventana principal
+        dialogStage.setTitle("Confirmación");
+
+        // Mensaje
+        Label label = new Label("¿Estas Seguro de esta Compra?");
+
+        // Botones
+        Button yesButton = new Button("Sí");
+        Button noButton = new Button("No");
+
+        // Manejar clics en botones
+        AtomicReference<String> dato = new AtomicReference<>("");
+        yesButton.setOnAction(e -> {
+            dato.set("Sí");
+            dialogStage.close();
+        });
+
+        noButton.setOnAction(e -> {
+            dato.set("No");
+            dialogStage.close();
+        });
+
+        // Layout
+        HBox buttonBox = new HBox(10, yesButton, noButton);
+        VBox dialogLayout = new VBox(20, label, buttonBox);
+        dialogLayout.setStyle("-fx-padding: 20; -fx-alignment: center;");
+        buttonBox.setStyle("-fx-alignment: center;");
+
+        Scene dialogScene = new Scene(dialogLayout, 250, 150);
+        dialogStage.setScene(dialogScene);
+        dialogStage.showAndWait(); // Mostrar el diálogo y esperar respuesta
+
+        return dato.get();
+    }
+
+    public HBox createCardPlayer( BuyController buyController,String name, String position, String price, String pathPhotoName, String pathPhotoTeam){
         HBox hbox = new HBox();
         hbox.setPrefHeight(100);
         hbox.setPrefWidth(365);
@@ -36,7 +75,16 @@ public class BuyWindow extends StartWindow {
         stackPane.setPrefHeight(120);
         stackPane.setPrefWidth(100);
 
-        // Crear las imágenes dentro del StackPane
+        // Creo un Pane que va a ser el recuadro blanco de detrás de las imágenes
+        Pane pane = new Pane();
+        pane.setPrefHeight(120);
+        pane.setPrefWidth(100);
+        pane.setStyle("-fx-background-color: white; -fx-background-radius: 20px;");
+
+        // Lo añado al StackPane el primero, para que se quede atrás del todo y le doy márgenes
+        stackPane.getChildren().add(pane);
+        StackPane.setMargin(pane, new Insets(0, 10, 0, 10) );
+
         ImageView imageView1 = new ImageView(new Image(getClass().getResource(pathPhotoName).toExternalForm()));
 
         imageView1.setFitHeight(120);
@@ -46,6 +94,7 @@ public class BuyWindow extends StartWindow {
 
         // margenes de imagenView1
         stackPane.setMargin(imageView1, new Insets(0, 20, 0, 20));
+
 
 
         ImageView imageView2 = new ImageView(new Image(getClass().getResource(pathPhotoTeam).toExternalForm()));
@@ -80,9 +129,14 @@ public class BuyWindow extends StartWindow {
         VBox.setMargin(priceLabel, new Insets(3, 0, 0, 0));
 
         // Crear un ImageView para el botón
-        ImageView buttonImageView = new ImageView(new Image(getClass().getResource("/org/example/fantasybasketaplication/Images/boton3.png").toExternalForm()));
+        ImageView buttonImageView = new ImageView(new Image(getClass().getResource("/org/example/fantasybasketaplication/Images/botonComprar.png").toExternalForm()));
+        buttonImageView.setUserData(name);
         buttonImageView.setFitHeight(20);
         buttonImageView.setFitWidth(80);
+        buttonImageView.getStyleClass().add("button-buy");
+
+        buttonImageView.setOnMouseClicked(buyController::handleButtonClick);
+
         VBox.setMargin(buttonImageView, new Insets(3, 0, 0, 0));
 
 
@@ -92,8 +146,6 @@ public class BuyWindow extends StartWindow {
         hbox.getChildren().addAll(stackPane, vbox);
 
         return hbox;
-
-
     }
 
     public GridPane createGridPlayer(List<HBox> listCardsPlayers){
@@ -123,5 +175,8 @@ public class BuyWindow extends StartWindow {
 
         return gridPane;
     }
+
+
+
 
 }

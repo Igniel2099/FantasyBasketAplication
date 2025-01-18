@@ -9,7 +9,10 @@ import org.example.fantasybasketaplication.WindowsApp.HomeWindow;
 import org.example.fantasybasketaplication.WindowsApp.StartWindow;
 import org.example.fantasybasketaplication.WindowsApp.TeamWindow;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 
 /**
  * Esta clase es el padre de todos los controladores, aquí solo está lo que tienen en común todos los controladores
@@ -65,7 +68,7 @@ public class FatherController {
     @FXML
     public void handleStartClick(MouseEvent event) {
         System.out.println("¡Botón Start clickeado!");
-
+        System.out.println("otras");
         cambiarEscena("/org/example/fantasybasketaplication/Scenes/HomeWindow.fxml","HomeWindow");
     }
 

@@ -35,19 +35,18 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0"
-            prefWidth="950.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.fantasybasketaplication.controllers.TeamController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fantasybasketaplication.controllers.TeamController">
    <stylesheets>
       <URL value="@../Scenes/style.css" />
    </stylesheets>
@@ -131,11 +130,153 @@
                   <Image url="@../Images/background_app.png" />
                </image>
             </ImageView>
-            <ScrollPane opacity="0.99" prefHeight="200.0" prefWidth="200.0" styleClass="main_content">
-               <content>
-                  <VBox />
-               </content>
-            </ScrollPane>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <StackPane prefHeight="582.0" prefWidth="389.0">
+                     <children>
+                        <ImageView fitHeight="582.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/campo.png" />
+                           </image>
+                        </ImageView>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <StackPane prefHeight="70.0" prefWidth="60.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: gray; -fx-padding: 7;" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="200.0">
+                                 <children>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/players/GiannisAntetokounmpo.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="60.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: gray; -fx-padding: 7;" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="150.0">
+                                 <children>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/players/GiannisAntetokounmpo.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="60.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: gray; -fx-padding: 7;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                 <children>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/players/GiannisAntetokounmpo.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="60.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: gray; -fx-padding: 7;" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="380.0">
+                                 <children>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/players/GiannisAntetokounmpo.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="60.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: gray; -fx-padding: 7;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="370.0">
+                                 <children>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/players/GiannisAntetokounmpo.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="image-button" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="515.0">
+                                 <image>
+                                    <Image url="@../Images/iconSave.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </StackPane>
+                  <VBox prefHeight="582.0" prefWidth="447.0">
+                     <children>
+                        <HBox prefHeight="74.0" prefWidth="447.0">
+                           <children>
+                              <Label text="Mi Equipo &gt;" textFill="#686666">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="image-button">
+                                 <image>
+                                    <Image url="@../Images/iconEdit.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="120.0" top="13.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0" style="-fx-hgap: 20; -fx-vgap: 20;">
+                           <children>
+                              <StackPane fx:id="containerButtonBase" onMouseClicked="#handleBaseClicked" prefHeight="136.0" prefWidth="179.0" styleClass="container-button">
+                                 <children>
+                                    <ImageView fitHeight="136.0" fitWidth="179.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/contentBase.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                              <StackPane fx:id="containerButtonEscolta" onMouseClicked="#handleEscoltaClicked" prefHeight="136.0" prefWidth="179.0" styleClass="container-button">
+                                 <children>
+                                    <ImageView fitHeight="136.0" fitWidth="179.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/contentEscolta.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                              <StackPane fx:id="containerButtonAlero" onMouseClicked="#handleAleroClicked" prefHeight="136.0" prefWidth="179.0" styleClass="container-button">
+                                 <children>
+                                    <ImageView fitHeight="136.0" fitWidth="179.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/contentAlero.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                              <StackPane fx:id="containerButtonAlaPivot" onMouseClicked="#handleAlaPivotClicked" prefHeight="136.0" prefWidth="179.0" styleClass="container-button">
+                                 <children>
+                                    <ImageView fitHeight="136.0" fitWidth="179.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/contentAlaPivot.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                              <HBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="379.0">
+                                 <children>
+                                    <StackPane fx:id="containerButtonPivot" onMouseClicked="#handlePivotClicked" prefHeight="136.0" prefWidth="179.0" styleClass="container-button">
+                                       <children>
+                                          <ImageView fitHeight="136.0" fitWidth="179.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Images/contentPivot.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="30.0" top="15.0" />
+                           </VBox.margin>
+                        </FlowPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
       </StackPane>
    </center>
