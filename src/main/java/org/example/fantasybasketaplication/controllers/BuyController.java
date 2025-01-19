@@ -12,7 +12,6 @@ import org.example.fantasybasketaplication.information.GetJsonInfo;
 import org.example.fantasybasketaplication.information.Player;
 import javafx.scene.input.MouseEvent;
 import org.example.fantasybasketaplication.information.SetJsonInfo;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,7 +40,6 @@ public class BuyController extends FatherController {
 
     public void setMainScrollPane(ScrollPane mainScrollPane) {
         this.mainScrollPane = mainScrollPane;
-
     }
 
 

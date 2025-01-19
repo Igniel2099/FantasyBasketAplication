@@ -60,9 +60,9 @@ public class GetJsonInfo {
      * guardamos datos importantes.
      * @return me retorna una lista de Players
      */
-    public List<Player> getPlayersJson(){
+    public List<Player> getPlayersJson(String pathJson){
 
-        String jsonString =getJsonString("/org/example/fantasybasketaplication/Json/data.json");
+        String jsonString =getJsonString(pathJson);
 
         Gson gson = new Gson();
 
@@ -72,6 +72,14 @@ public class GetJsonInfo {
 
         // Deserializar la cadena JSON en una lista de players
         return gson.fromJson(jsonString, tipoDeListaPersonas);
+    }
+
+    /**
+     * Método sobrecargado para que no me haga falta llamar directamente al archivo
+     * @return
+     */
+    public List<Player> getPlayersJson(){
+        return getPlayersJson("/org/example/fantasybasketaplication/Json/data.json");
     }
 
 

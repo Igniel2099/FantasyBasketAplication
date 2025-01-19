@@ -124,6 +124,7 @@ public class BuyWindow extends StartWindow {
         VBox.setMargin(positionLabel, new Insets(3, 0, 0, 0));
 
         Label priceLabel = new Label(price);
+
         priceLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #fafafa;");
         positionLabel.setPadding(new Insets(0, 10, 0, 10));
         VBox.setMargin(priceLabel, new Insets(3, 0, 0, 0));

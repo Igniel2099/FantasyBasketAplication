@@ -11,7 +11,10 @@ public class SetJsonInfo {
 
 
     public String convertFormatJson(String name, String position, Double price, String team, String pathPhotoName, String pathPhotoTeam){
-        return String.format("{ \"name\" : \"%s\",\"position\" : \"%s\",\"price\": \"%.2f\", \"team\" : \"%s\" , \"pathPhotoName\" : \"%s\", \"pathPhotoTeam\" : \"%s\" }",
+
+        System.out.println(String.format(Locale.US,"{ \"name\" : \"%s\",\"position\" : \"%s\",\"price\": %.2f, \"team\" : \"%s\" , \"pathPhotoName\" : \"%s\", \"pathPhotoTeam\" : \"%s\" }",
+                name, position, price, team, pathPhotoName, pathPhotoTeam));
+        return String.format(Locale.US,"{ \"name\" : \"%s\",\"position\" : \"%s\",\"price\": %.2f, \"team\" : \"%s\" , \"pathPhotoName\" : \"%s\", \"pathPhotoTeam\" : \"%s\" }",
                 name, position, price, team, pathPhotoName, pathPhotoTeam);
     }
 

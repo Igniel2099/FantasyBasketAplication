@@ -230,7 +230,7 @@
                               </StackPane>
                               <StackPane fx:id="containerButtonEscolta" onMouseClicked="#handleEscoltaClicked" prefHeight="136.0" prefWidth="179.0" styleClass="container-button">
                                  <children>
-                                    <ImageView fitHeight="136.0" fitWidth="179.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="136.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../Images/contentEscolta.png" />
                                        </image>

@@ -9,8 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="436.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import java.net.URL?>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="436.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fantasybasketaplication.controllers.EditController">
+   <stylesheets>
+      <URL value="@../Scenes/style.css" />
+   </stylesheets>
    <children>
       <ImageView fitHeight="389.0" fitWidth="436.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -29,7 +32,7 @@
             </Label>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#handleDeleteButtonClicked" pickOnBounds="true" preserveRatio="true" styleClass="button-delete">
+                  <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#handleDeleteButtonClicked" pickOnBounds="true" preserveRatio="true" styleClass="container-button">
                      <image>
                         <Image url="@../Images/iconDelete.png" />
                      </image>
@@ -37,7 +40,7 @@
                         <Insets left="100.0" right="30.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#handleReplaceButtonClicked" pickOnBounds="true" preserveRatio="true" styleClass="button-replace">
+                  <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#handleReplaceButtonClicked" pickOnBounds="true" preserveRatio="true" styleClass="container-button">
                      <image>
                         <Image url="@../Images/iconReplace.png" />
                      </image>
