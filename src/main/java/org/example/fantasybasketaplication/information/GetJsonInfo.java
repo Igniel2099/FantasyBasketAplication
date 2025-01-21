@@ -2,15 +2,12 @@ package org.example.fantasybasketaplication.information;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.example.fantasybasketaplication.controllers.BuyController;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Esta clase se encarga de gestionar la obtención de la información que contienen lo json
@@ -66,7 +63,6 @@ public class GetJsonInfo {
 
         Gson gson = new Gson();
 
-
         // Definir el tipo de datos que queremos deserializar
         Type tipoDeListaPersonas = new TypeToken<ArrayList<Player>>(){}.getType();
 
@@ -79,7 +75,7 @@ public class GetJsonInfo {
      * @return
      */
     public List<Player> getPlayersJson(){
-        return getPlayersJson("/org/example/fantasybasketaplication/Json/data.json");
+        return getPlayersJson("data.json");
     }
 
 
@@ -102,22 +98,12 @@ public class GetJsonInfo {
     }
 
     /**
-     * Este método sobrecargado se encarga de que cada que lo llame sin poner un paramétro el que use sera el archivo
-     * data.json
-     * @return me devuelve lo mismo que el método normal, una lista de hashmap's de los json
-     */
-    public List<HashMap<String, Object>> getPlayersHashMap(){
-        return getPlayersHashMap("/org/example/fantasybasketaplication/Json/data.json");
-    }
-
-
-    /**
      * Este método se encarga de buscar a un jugador dentro de una lista de hashmap's
      * @param nameSearch el nombre del player que quiero encontrar
      * @return mne devuelve un hashmap que coincida con el nombre del jugador buscado.
      */
-    public HashMap<String, Object> getSearchPlayer(String nameSearch){
-        List<HashMap<String, Object>> players = getPlayersHashMap();
+    public HashMap<String, Object> getSearchPlayer(String nameSearch, String pathJson){
+        List<HashMap<String, Object>> players = getPlayersHashMap(pathJson);
 
         HashMap<String, Object> hashMapPlayer = null;
         for (HashMap<String, Object> player : players) {
@@ -126,8 +112,12 @@ public class GetJsonInfo {
                 hashMapPlayer = player;
             }
         }
-
         return hashMapPlayer;
     }
+
+    public HashMap<String, Object> getSearchPlayer(String nameSearch){
+        return getSearchPlayer(nameSearch,"data.json");
+    }
+
 
 }

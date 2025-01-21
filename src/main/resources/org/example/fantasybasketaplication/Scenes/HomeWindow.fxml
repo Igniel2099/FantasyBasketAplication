@@ -44,10 +44,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0"
-            prefWidth="950.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.fantasybasketaplication.controllers.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fantasybasketaplication.controllers.HomeController">
    <stylesheets>
       <URL value="@../Scenes/style.css" />
    </stylesheets>
@@ -133,7 +132,13 @@
             </ImageView>
             <ScrollPane opacity="0.99" prefHeight="200.0" prefWidth="200.0" styleClass="main_content">
                <content>
-                  <VBox />
+                  <VBox>
+                     <children>
+                        <WebView fx:id="mywebView" prefHeight="535.0" prefWidth="631.0" />
+                     </children>
+                     <padding>
+                        <Insets left="100.0" top="25.0" />
+                     </padding></VBox>
                </content>
             </ScrollPane>
          </children>

@@ -162,6 +162,7 @@ public class SelectionController {
     }
 
     private ObservableValue<ImageView> createImageViewCell(String imagePath) {
+        System.out.println(imagePath);
         ImageView imageView = new ImageView(new Image(imagePath));
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);

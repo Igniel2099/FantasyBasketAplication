@@ -1,33 +1,42 @@
 package org.example.fantasybasketaplication.information;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GetCsvInfo {
+
     public static void main(String[] args) {
-        String[] header = {"DineroActual", "gasto", "NombreDelJugador"};
-        String[][] data = {
-                {"20000000.00","0","Ninguno"},
-                {"19000000.00", "-43000.00", "Lebron"},
-        };
 
-        try (FileWriter writer = new FileWriter("registrosDeCompra.csv")) {
-            // Escribir la cabecera
-            for (String col : header) {
-                writer.append(col).append(",");
-            }
-            writer.append("\n");
+    }
 
-            // Escribir datos
-            for (String[] row : data) {
-                for (String field : row) {
-                    writer.append(field).append(",");
-                }
-                writer.append("\n");
+
+
+    public String readFromCsv() {
+        String linea = "";
+        StringBuilder csv = new StringBuilder();
+        try(BufferedReader br = new BufferedReader(new FileReader("registrosDeCompra.csv"))){
+
+            while ((linea = br.readLine())!=null){
+                csv.append(linea).append("\n");
             }
-            System.out.println("Archivo CSV escrito correctamente.");
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        }catch (IOException e){
+            System.out.println("Error:" + e.getMessage());
         }
+        return csv.toString();
+    }
+
+    public ArrayList<ArrayList<String>> getInformationInArrayList(String lineas) {
+        String[] filas = lineas.split("\n");
+        ArrayList<ArrayList<String>> datos = new ArrayList<>();
+
+        for (String s : filas) {
+            String[] fila = s.split(",");
+            ArrayList<String> dato = new ArrayList<>(Arrays.asList(fila));
+            datos.add(dato);
+        }
+
+        return datos;
     }
 }

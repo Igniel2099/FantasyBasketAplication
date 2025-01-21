@@ -19,6 +19,10 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 
+/**
+ * Esta clase se encarga de la Ventana BuyWindow que es donde se hacen todos los tipos de acciones económicas que
+ * comprende la aplicación como Comprar y Vender jugadores ádemas de ver el registro de acciones del dinero.
+ */
 public class BuyWindow extends StartWindow {
     @Override
     public void getController(FXMLLoader loader, Stage primaryStage) {
@@ -26,13 +30,24 @@ public class BuyWindow extends StartWindow {
         controller.setPrimaryStage(primaryStage);
     }
 
-    public String showConfirmationDialog() {
+
+
+    public String showConfirmationDialog(String economicAction) throws Exception {
         Stage dialogStage = new Stage();
         dialogStage.initModality(Modality.APPLICATION_MODAL); // Bloquea la ventana principal
         dialogStage.setTitle("Confirmación");
 
         // Mensaje
-        Label label = new Label("¿Estas Seguro de esta Compra?");
+        String message = economicAction.equals("Comprar")
+                ? "¿Estas segur@ de esta Compra?"
+                : economicAction.equals("Vender")
+                ? "¿Estas segur@ de esta Venta?"
+                : null;
+        if (message == null) {
+            throw new Exception("El puesto un valor en economicAction para el cual el programa no esta preparado");
+        }
+
+        Label label = new Label(message);
 
         // Botones
         Button yesButton = new Button("Sí");
@@ -63,7 +78,7 @@ public class BuyWindow extends StartWindow {
         return dato.get();
     }
 
-    public HBox createCardPlayer( BuyController buyController,String name, String position, String price, String pathPhotoName, String pathPhotoTeam){
+    public HBox createCardPlayer( BuyController buyController,String name, String position, String price, String estado, String pathPhotoName, String pathPhotoTeam){
         HBox hbox = new HBox();
         hbox.setPrefHeight(100);
         hbox.setPrefWidth(365);
@@ -94,8 +109,6 @@ public class BuyWindow extends StartWindow {
 
         // margenes de imagenView1
         stackPane.setMargin(imageView1, new Insets(0, 20, 0, 20));
-
-
 
         ImageView imageView2 = new ImageView(new Image(getClass().getResource(pathPhotoTeam).toExternalForm()));
         imageView2.setFitHeight(37);
@@ -130,13 +143,26 @@ public class BuyWindow extends StartWindow {
         VBox.setMargin(priceLabel, new Insets(3, 0, 0, 0));
 
         // Crear un ImageView para el botón
-        ImageView buttonImageView = new ImageView(new Image(getClass().getResource("/org/example/fantasybasketaplication/Images/botonComprar.png").toExternalForm()));
+        String pathImage = estado.equals("Comprado")
+                ? "/org/example/fantasybasketaplication/Images/botonVender.png"
+                : "/org/example/fantasybasketaplication/Images/botonComprar.png";
+
+        ImageView buttonImageView = new ImageView(new Image(getClass().getResource(pathImage).toExternalForm()));
         buttonImageView.setUserData(name);
         buttonImageView.setFitHeight(20);
         buttonImageView.setFitWidth(80);
         buttonImageView.getStyleClass().add("button-buy");
 
-        buttonImageView.setOnMouseClicked(buyController::handleButtonClick);
+        if (estado.equals("Comprado")) {
+            buttonImageView.setOnMouseClicked(buyController::handleSellClick);
+        } else if (estado.equals("No Comprado")) {
+            buttonImageView.setOnMouseClicked(buyController::handleButtonClick);
+        }else {
+            System.out.println(
+                    "la imagen botón no tiene ningún setOnMouseClicked porque has registrado un estado que no estoy" +
+                    "controlando :) " + estado
+            );
+        }
 
         VBox.setMargin(buttonImageView, new Insets(3, 0, 0, 0));
 

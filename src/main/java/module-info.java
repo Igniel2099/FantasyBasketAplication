@@ -3,6 +3,7 @@ module org.example.fantasybasketaplication {
     requires javafx.fxml;
     requires com.google.gson;
     requires java.desktop;
+    requires javafx.web;
 
 
     opens org.example.fantasybasketaplication to javafx.fxml;

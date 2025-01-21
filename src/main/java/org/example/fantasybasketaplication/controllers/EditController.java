@@ -4,6 +4,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.fantasybasketaplication.WindowsApp.TeamWindow;
 
+/**
+ * Esta clase es el controlador de la Ventana EditWindow
+ */
 public class EditController {
     private Stage primaryStage;
     private String result;

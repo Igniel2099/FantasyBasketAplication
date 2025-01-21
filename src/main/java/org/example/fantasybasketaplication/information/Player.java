@@ -5,6 +5,7 @@ public class Player {
     private String position;
     private Double price;
     private String team;
+    private String estado;
     private String pathPhotoName;
     private String pathPhotoTeam;
 
@@ -16,11 +17,12 @@ public class Player {
         this.team = team;
     }
 
-    public Player(String name, String position, Double price, String team, String pathPhotoName, String pathPhotoTeam) {
+    public Player(String name, String position, Double price, String team, String estado, String pathPhotoName, String pathPhotoTeam) {
         this.name = name;
         this.position = position;
         this.price = price;
         this.team = team;
+        this.estado = estado;
         this.pathPhotoName = pathPhotoName;
         this.pathPhotoTeam = pathPhotoTeam;
     }
@@ -57,6 +59,13 @@ public class Player {
         this.team = team;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public String getPathPhotoName() {
         return pathPhotoName;

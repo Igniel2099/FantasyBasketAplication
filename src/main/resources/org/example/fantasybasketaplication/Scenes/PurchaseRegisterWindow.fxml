@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fantasybasketaplication.controllers.PurchaseRegisterController">
+   <stylesheets>
+      <URL value="@../Scenes/style.css" />
+   </stylesheets>
+   <top>
+      <HBox prefHeight="83.0" prefWidth="200.0" style="-fx-background-color: #676767;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../Images/icono.png" />
+               </image>
+            </ImageView>
+            <Label text="BasketDraft">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="112.0" style="-fx-background-color: #999999;" BorderPane.alignment="CENTER">
+         <children>
+            <StackPane prefHeight="88.0" prefWidth="97.0" styleClass="rect_bar">
+               <children>
+                  <Pane prefHeight="88.0" prefWidth="97.0" />
+                  <ImageView fx:id="buttonHome" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#HandleHomeClick" pickOnBounds="true" preserveRatio="true" styleClass="image-button">
+                     <image>
+                        <Image url="@../Images/iconHome.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets left="5.0" right="10.0" top="25.0" />
+               </VBox.margin>
+            </StackPane>
+            <StackPane prefHeight="88.0" prefWidth="97.0">
+               <children>
+                  <Pane prefHeight="88.0" prefWidth="97.0" style="-fx-background-color: #D9D9D9;" />
+                  <Pane maxHeight="50.0" maxWidth="8.0" prefHeight="50.0" prefWidth="8.0" style="-fx-background-color: #7B3B7C; -fx-background-radius: 10px;" StackPane.alignment="CENTER_LEFT" />
+                  <ImageView fx:id="buttonBuy" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#HandleBuyClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/iconbuy.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets left="5.0" right="10.0" top="25.0" />
+               </VBox.margin>
+            </StackPane>
+            <StackPane prefHeight="88.0" prefWidth="97.0" styleClass="rect_bar">
+               <children>
+                  <Pane prefHeight="88.0" prefWidth="97.0">
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                  </Pane>
+                  <ImageView fx:id="buttonTeam" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#HandleTeamClick" pickOnBounds="true" preserveRatio="true" styleClass="image-button">
+                     <image>
+                        <Image url="@../Images/iconTeam.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets left="5.0" right="10.0" top="25.0" />
+               </VBox.margin>
+            </StackPane>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="585.0" fitWidth="838.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/background_app.png" />
+               </image>
+            </ImageView>
+            <ScrollPane fx:id="mainScrollPane" opacity="0.99" prefHeight="200.0" prefWidth="200.0" styleClass="main_content">
+               <content>
+                  <VBox prefHeight="579.0" prefWidth="818.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Registro de compras" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#handleBackClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #746060; -fx-background-radius: 25px;" styleClass="container-button">
+                                 <children>
+                                    <ImageView fitHeight="37.0" fitWidth="36.0" layoutX="32.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/iconBack.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="340.0" />
+                                 </HBox.margin>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="25.0" top="25.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>
