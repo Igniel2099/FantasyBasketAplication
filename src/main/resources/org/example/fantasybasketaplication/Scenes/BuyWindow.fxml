@@ -158,7 +158,7 @@
                                     </Label>
                                  </children>
                               </VBox>
-                              <ImageView fitHeight="160.0" fitWidth="169.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="idGhrapic" fitHeight="160.0" fitWidth="169.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/grafico.png" />
                                  </image>

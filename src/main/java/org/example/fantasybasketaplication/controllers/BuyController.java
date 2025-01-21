@@ -20,12 +20,21 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+
 /**
  * Esta clase es un controlador de la escena buyWindow que se encarga de gestionar los botones y eventos que suceden en
  * la ventana de buyWindow, ademas de hacer una correcta inicialización de todos los datos.
  */
 public class BuyController extends FatherController {
 
+    public int contador = 0; // esto lo tengo que eliminar
+
+    public List<Double> newList = new ArrayList<>();
     /**
      * El atributo mainScrollPane es el scroll principal de la aplicación en la que se contendrán el Vbox principal y
      * sus respectivos contenedores.
@@ -39,6 +48,16 @@ public class BuyController extends FatherController {
     @FXML
     private Label labelMoney;
 
+    @FXML
+    private ImageView idGhrapic;
+
+    public ImageView getIdGhrapic() {
+        return idGhrapic;
+    }
+
+    public void setIdGhrapic(ImageView idGhrapic) {
+        this.idGhrapic = idGhrapic;
+    }
 
 
 
@@ -52,6 +71,63 @@ public class BuyController extends FatherController {
 
     public void setLabelMoney(Label labelMoney) {
         this.labelMoney = labelMoney;
+    }
+
+    public void updateGraph(List<Double> transactions) {
+        Image chartImage = createGraphImage(transactions, 169, 160);
+        getIdGhrapic().setImage(chartImage);
+    }
+
+    // Crear la gráfica como una imagen a partir de las transacciones
+    private Image createGraphImage(List<Double> transactions, int width, int height) {
+        Canvas canvas = new Canvas(width, height);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        // Dibujar fondo
+        gc.setFill(Color.WHITE);
+        gc.fillRect(0, 0, width, height);
+
+        // Configurar estilos para la línea
+        gc.setStroke(Color.BLUE);
+        gc.setLineWidth(2);
+
+        // Dibujar eje X e Y
+        gc.setStroke(Color.GRAY);
+        gc.setLineWidth(1);
+        gc.strokeLine(50, height - 50, width - 50, height - 50); // Eje X
+        gc.strokeLine(50, 50, 50, height - 50); // Eje Y
+
+        // Dibujar puntos y líneas
+        if (transactions != null && !transactions.isEmpty()) {
+            double balance = 0.0;
+            double maxY = transactions.stream().mapToDouble(Math::abs).max().orElse(1);
+            double scaleX = (width - 100) / (double) transactions.size();
+            double scaleY = (height - 100) / (2 * maxY);
+
+            double previousX = 50;
+            double previousY = height - 50 - (balance * scaleY);
+
+            for (int i = 0; i < transactions.size(); i++) {
+                balance += transactions.get(i);
+                double x = 50 + (i * scaleX);
+                double y = height - 50 - (balance * scaleY);
+
+                // Dibujar línea
+                gc.setStroke(Color.BLUE);
+                gc.strokeLine(previousX, previousY, x, y);
+
+                // Dibujar punto
+                gc.setFill(Color.RED);
+                gc.fillOval(x - 3, y - 3, 6, 6);
+
+                // Actualizar coordenadas previas
+                previousX = x;
+                previousY = y;
+            }
+        }
+
+        // Convertir el Canvas en una imagen
+        return canvas.snapshot(null, null);
     }
 
     public ScrollPane getMainScrollPane() {
@@ -211,6 +287,19 @@ public class BuyController extends FatherController {
             }
             System.out.println(listHashMapPlayers);
             setJsonInfo.writeJsonToFile(listHashMapPlayers,"data.json");
+
+            // cambiar la imagen del grafico
+
+            List<List<Double>> listDouble = new ArrayList<>(Arrays.asList(
+                    new ArrayList<>(Arrays.asList(2000000.0, 180999.0)),
+                    new ArrayList<>(Arrays.asList(2000000.0, 180999.0, 189097.0)),
+                    new ArrayList<>(Arrays.asList(2000000.0, 180999.0, 189097.0, 170987.0)),
+                    new ArrayList<>(Arrays.asList(2000000.0, 180999.0, 189097.0, 170987.0, 10980.0))
+            ));
+
+            updateGraph(listDouble.get(contador));
+
+            contador++; // este es el contador que me cambia la lista
         }
     }
 
@@ -274,6 +363,16 @@ public class BuyController extends FatherController {
             Double result = doubleLabelMoney + precioDouble;
             String stringResult = stringConvertLabel(result);
             getLabelMoney().setText(stringResult);
+
+            // cambiar el control
+
+            imageButton.setImage(new Image(getClass().getResource("/org/example/fantasybasketaplication/Images/botonComprar.png").toExternalForm()));
+
+            // Tengo que cambiar el nombre del evento que clicka pa que lo venda.
+
+            imageButton.setOnMouseClicked(this::handleButtonClick);
+
+
         }
 
     }
