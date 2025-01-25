@@ -105,19 +105,34 @@ public class GetJsonInfo {
     public HashMap<String, Object> getSearchPlayer(String nameSearch, String pathJson){
         List<HashMap<String, Object>> players = getPlayersHashMap(pathJson);
 
-        HashMap<String, Object> hashMapPlayer = null;
-        for (HashMap<String, Object> player : players) {
+        int indexPlayer = getJson(players, nameSearch);
 
-            if (player.get("name").equals(nameSearch)) {
-                hashMapPlayer = player;
-            }
-        }
-        return hashMapPlayer;
+        return players.get(indexPlayer);
     }
 
     public HashMap<String, Object> getSearchPlayer(String nameSearch){
         return getSearchPlayer(nameSearch,"data.json");
     }
 
+    public void changeStateJson(String pathJson, HashMap<String, Object> player){
+        SetJsonInfo setJsonInfo = new SetJsonInfo();
+        List<HashMap<String, Object>> listHashMapPlayers = getPlayersHashMap(pathJson);
+
+        int index = getJson(listHashMapPlayers,(String) player.get("name"));
+
+        listHashMapPlayers.set(index, player);
+        System.out.println(listHashMapPlayers);
+
+        setJsonInfo.writeJsonToFile(listHashMapPlayers,"data.json");
+    }
+
+    public int getJson(List<HashMap<String, Object>> listHashMap, String nameSearch){
+        for (int i = 0; i < listHashMap.size(); i++) {
+            if (listHashMap.get(i).get("name").equals(nameSearch)){
+                return i;
+            }
+        }
+        return -1;
+    }
 
 }

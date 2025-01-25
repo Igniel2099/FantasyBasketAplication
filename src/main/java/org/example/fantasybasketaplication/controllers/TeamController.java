@@ -15,6 +15,23 @@ import java.util.HashMap;
 public class TeamController extends FatherController{
 
     @FXML
+    private ImageView id_alero;
+
+    @FXML
+    private ImageView id_base;
+
+    @FXML
+    private ImageView id_ala_pivot;
+
+    @FXML
+    private ImageView id_escolta;
+
+    @FXML
+    private ImageView id_pivot;
+
+
+
+    @FXML
     private StackPane containerButtonBase;
 
     @FXML
@@ -69,6 +86,45 @@ public class TeamController extends FatherController{
         this.containerButtonPivot = containerButtonPivot;
     }
 
+    public ImageView getId_alero() {
+        return id_alero;
+    }
+
+    public void setId_alero(ImageView id_alero) {
+        this.id_alero = id_alero;
+    }
+
+    public ImageView getId_base() {
+        return id_base;
+    }
+
+    public void setId_base(ImageView id_base) {
+        this.id_base = id_base;
+    }
+
+    public ImageView getId_ala_pivot() {
+        return id_ala_pivot;
+    }
+
+    public void setId_ala_pivot(ImageView id_ala_pivot) {
+        this.id_ala_pivot = id_ala_pivot;
+    }
+
+    public ImageView getId_escolta() {
+        return id_escolta;
+    }
+
+    public void setId_escolta(ImageView id_escolta) {
+        this.id_escolta = id_escolta;
+    }
+
+    public ImageView getId_pivot() {
+        return id_pivot;
+    }
+
+    public void setId_pivot(ImageView id_pivot) {
+        this.id_pivot = id_pivot;
+    }
 
     public String selectImage(String nameStackPane){
         HashMap<String,String> hashMapImages = new HashMap<>();
@@ -81,7 +137,45 @@ public class TeamController extends FatherController{
         return hashMapImages.get(nameStackPane);
     }
 
-    public void actionClickedStackPane(StackPane buttonStackPane, String nameStackPane){
+    /**
+     * Este método crea un mapa de el id de un contenedor y la imagen que se corresponde con ese id para después
+     * devolver la imagen del id que se esta buscando.
+     * @param searchId identificador del contenedor del que quiero buscar su imagen relacionada
+     * @return me devuelve la imagen relacionada con el identificador del contenedor
+     */
+    public ImageView selectImageTeamField(String searchId){
+        HashMap<String,ImageView> mapImagesContainer = new HashMap<>();
+
+        mapImagesContainer.put("containerButtonBase",getId_base());
+        mapImagesContainer.put("containerButtonEscolta",getId_escolta());
+        mapImagesContainer.put("containerButtonAlero",getId_alero());
+        mapImagesContainer.put("containerButtonAlaPivot",getId_ala_pivot());
+        mapImagesContainer.put("containerButtonPivot",getId_pivot());
+
+        return  mapImagesContainer.get(searchId);
+    }
+
+    /**
+     * Este método cambia directamente la imagen del contenedor con la Imagen sacada del método selectImageTeamField
+     * @param idSearch el identificador de la imagen relacionada que estoy buscando
+     * @param controller el controlador que obtiene el jugador seleccionado y por ende su path de su respectiva imagen
+     */
+    public void changeImage(String idSearch, SelectionController controller){
+        selectImageTeamField(idSearch).setImage(
+                new Image(getClass().getResource(
+                        controller.getPlayerSelected().getPathPhotoName()
+                ).toExternalForm())
+        );
+    }
+
+
+
+    public void actionClickedStackPane(StackPane buttonStackPane, String nameStackPane, MouseEvent mouseEvent){
+        // Aquí saco el id del stack pane
+        StackPane idStackPane = (StackPane) mouseEvent.getSource();
+        String idSpStr = idStackPane.getId();
+
+
         TeamWindow teamWindow = new TeamWindow();
         Object controller = null;
         try {
@@ -102,6 +196,13 @@ public class TeamController extends FatherController{
                 ImageView imageView = new ImageView( new Image(getClass().getResource(selectImage(nameStackPane)).toExternalForm()));
                 buttonStackPane.getChildren().clear();
                 buttonStackPane.getChildren().add(imageView);
+
+                // Cambiar la imagen---------------------------------------------------------------
+                selectImageTeamField(idSpStr).setImage(
+                        new Image(getClass().getResource(
+                                "/org/example/fantasybasketaplication/Images/imagenPerfil.png"
+                        ).toExternalForm())
+                );
             } else if (election.equals("Replace")) {
                 try{
                     SelectionController newController = teamWindow.startStageSelection();
@@ -113,6 +214,11 @@ public class TeamController extends FatherController{
 
                     buttonStackPane.getChildren().clear();
                     buttonStackPane.getChildren().add(vBox);
+
+                    // Cambiar la imagen----------------------------------------------------------------------
+                    changeImage(idSpStr,newController);
+
+
                 }catch (IOException e){
                     e.printStackTrace();
                 }
@@ -127,6 +233,9 @@ public class TeamController extends FatherController{
 
             buttonStackPane.getChildren().clear();
             buttonStackPane.getChildren().add(vBox);
+
+            // Cambiar la imagen---------------------------------------------------------------
+            changeImage(idSpStr,selectionController);
         }
     }
 
@@ -134,27 +243,37 @@ public class TeamController extends FatherController{
 
     public void handlePivotClicked(MouseEvent event) {
         System.out.println("Pivot clicked");
-        actionClickedStackPane(getContainerButtonPivot(), "pivot");
+        actionClickedStackPane(getContainerButtonPivot(), "pivot",event);
     }
 
     public void handleBaseClicked(MouseEvent event) {
         System.out.println("Base clicked");
-        actionClickedStackPane(getContainerButtonBase(),"base");
+        actionClickedStackPane(getContainerButtonBase(),"base", event);
     }
 
     public void handleEscoltaClicked(MouseEvent event) {
         System.out.println("Escolta clicked");
-        actionClickedStackPane(getContainerButtonEscolta(), "escolta");
+        actionClickedStackPane(getContainerButtonEscolta(), "escolta", event);
     }
 
     public void handleAleroClicked(MouseEvent event) {
         System.out.println("Alero clicked");
-        actionClickedStackPane(getContainerButtonAlero(), "alero");
+        actionClickedStackPane(getContainerButtonAlero(), "alero", event);
     }
 
     public void handleAlaPivotClicked(MouseEvent event) {
         System.out.println("Ala Pivot clicked");
-        actionClickedStackPane(getContainerButtonAlaPivot(), "ala pivot");
+        actionClickedStackPane(getContainerButtonAlaPivot(), "ala pivot", event);
+    }
+
+    @FXML
+    public void initialize(){
+        getId_alero().setImage(new Image(getClass().getResource("/org/example/fantasybasketaplication/Images/imagenPerfil.png").toExternalForm()));
+        getId_base().setImage(new Image(getClass().getResource("/org/example/fantasybasketaplication/Images/imagenPerfil.png").toExternalForm()));
+        getId_pivot().setImage(new Image(getClass().getResource("/org/example/fantasybasketaplication/Images/imagenPerfil.png").toExternalForm()));
+        getId_ala_pivot().setImage(new Image(getClass().getResource("/org/example/fantasybasketaplication/Images/imagenPerfil.png").toExternalForm()));
+        getId_escolta().setImage(new Image(getClass().getResource("/org/example/fantasybasketaplication/Images/imagenPerfil.png").toExternalForm()));
+
     }
 
 }

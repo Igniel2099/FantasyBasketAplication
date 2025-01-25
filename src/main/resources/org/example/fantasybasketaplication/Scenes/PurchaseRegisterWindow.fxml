@@ -36,6 +36,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -155,6 +157,13 @@
                               </AnchorPane>
                            </children>
                         </HBox>
+                        <TableView fx:id="tableView" prefHeight="425.0" prefWidth="794.0">
+                          <columns>
+                            <TableColumn fx:id="dineroColumn" prefWidth="288.8000114560127" text="Dinero Actual" />
+                            <TableColumn fx:id="gastoColumn" minWidth="0.0" prefWidth="268.8000030517578" text="Gasto" />
+                              <TableColumn fx:id="nombreJugadorColumn" prefWidth="228.7999267578125" text="Nombre del Jugador Comprado" />
+                          </columns>
+                        </TableView>
                      </children>
                      <padding>
                         <Insets left="25.0" top="25.0" />

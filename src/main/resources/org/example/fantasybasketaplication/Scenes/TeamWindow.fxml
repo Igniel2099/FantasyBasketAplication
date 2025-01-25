@@ -143,7 +143,7 @@
                            <children>
                               <StackPane prefHeight="70.0" prefWidth="60.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: gray; -fx-padding: 7;" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="200.0">
                                  <children>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="id_base" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../Images/players/GiannisAntetokounmpo.png" />
                                        </image>
@@ -152,7 +152,7 @@
                               </StackPane>
                               <StackPane layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="60.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: gray; -fx-padding: 7;" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="150.0">
                                  <children>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="id_ala_pivot" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../Images/players/GiannisAntetokounmpo.png" />
                                        </image>
@@ -161,7 +161,7 @@
                               </StackPane>
                               <StackPane layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="60.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: gray; -fx-padding: 7;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
                                  <children>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="id_alero" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../Images/players/GiannisAntetokounmpo.png" />
                                        </image>
@@ -170,7 +170,7 @@
                               </StackPane>
                               <StackPane layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="60.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: gray; -fx-padding: 7;" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="380.0">
                                  <children>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="id_escolta" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../Images/players/GiannisAntetokounmpo.png" />
                                        </image>
@@ -179,7 +179,7 @@
                               </StackPane>
                               <StackPane layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="60.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: gray; -fx-padding: 7;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="370.0">
                                  <children>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="id_pivot" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../Images/players/GiannisAntetokounmpo.png" />
                                        </image>
