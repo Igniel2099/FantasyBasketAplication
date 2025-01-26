@@ -256,8 +256,6 @@ public class TeamController extends FatherController{
                 // Eliminar el anterior registro
                 getSetJsonInfo().deleteJsonFromFile("teamPlayer.json","position",getPositionContainer(idSpStr));
             } else if (election.equals("Replace")) {
-                // eliminar al registro anterior
-                getSetJsonInfo().deleteJsonFromFile("teamPlayer.json","position",getPositionContainer(idSpStr));
 
                 try{
                     SelectionController newController = teamWindow.startStageSelection(getPositionContainer(idSpStr));
@@ -273,6 +271,7 @@ public class TeamController extends FatherController{
                     // Cambiar la imagen----------------------------------------------------------------------
                     changeImage(idSpStr,newController);
 
+                    getSetJsonInfo().deleteJsonFromFile("teamPlayer.json","position",getPositionContainer(idSpStr));
                     // escribirlo
                     getSetJsonInfo().addJsonToFile(getSetJsonInfo().convertFormatJson(
                                     newController.getPlayerSelected().getName(),
