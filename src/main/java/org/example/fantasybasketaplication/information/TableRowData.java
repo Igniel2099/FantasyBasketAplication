@@ -4,11 +4,13 @@ public class TableRowData {
     private String dineroActual;
     private String gasto;
     private String nombreJugador;
+    private String accionBancaria;
 
-    public TableRowData(String dineroActual, String gasto, String nombreJugador) {
+    public TableRowData(String dineroActual, String gasto, String nombreJugador, String accionBancaria) {
         this.dineroActual = dineroActual;
         this.gasto = gasto;
         this.nombreJugador = nombreJugador;
+        this.accionBancaria = accionBancaria;
     }
 
     // Getters y setters
@@ -34,6 +36,14 @@ public class TableRowData {
 
     public void setNombreJugador(String nombreJugador) {
         this.nombreJugador = nombreJugador;
+    }
+
+    public String getAccionBancaria() {
+        return accionBancaria;
+    }
+
+    public void setAccionBancaria(String accionBancaria) {
+        this.accionBancaria = accionBancaria;
     }
 }
 

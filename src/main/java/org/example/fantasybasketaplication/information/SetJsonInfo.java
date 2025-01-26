@@ -12,16 +12,12 @@ public class SetJsonInfo {
 
     public String convertFormatJson(String name, String position, Double price, String team, String estado, String pathPhotoName, String pathPhotoTeam){
 
-        System.out.println(String.format(Locale.US,"{ \"name\" : \"%s\",\"position\" : \"%s\",\"price\": %.2f, \"team\" : \"%s\" , \"estado\" : \"%s\", \"pathPhotoName\" : \"%s\", \"pathPhotoTeam\" : \"%s\" }",
-                name, position, price, team, estado, pathPhotoName, pathPhotoTeam));
-
         return String.format(Locale.US,"{ \"name\" : \"%s\",\"position\" : \"%s\",\"price\": %.2f, \"team\" : \"%s\" , \"estado\" : \"%s\", \"pathPhotoName\" : \"%s\", \"pathPhotoTeam\" : \"%s\" }",
                 name, position, price, team, estado, pathPhotoName, pathPhotoTeam);
     }
 
-    public void addJsonToFile(String json) {
-        // Definir la ruta donde se guardará el archivo fuera del JAR
-        String filePath = "savePlayers.json"; // Guardado en el directorio de ejecución actual.
+    public void addJsonToFile(String json, String filePath) {
+
         GetJsonInfo getJsonInfo = new GetJsonInfo();
         List<HashMap<String, Object>> jsonList = getJsonInfo.getPlayersHashMap(filePath);
         Gson gson = new Gson();
@@ -32,13 +28,15 @@ public class SetJsonInfo {
         jsonList.add(newJsonMap);
 
         // Guardar la lista actualizada en el archivo JSON
-        try (Writer writer = new FileWriter("savePlayers.json")) {
+        try (Writer writer = new FileWriter(filePath)) {
             gson.toJson(jsonList, writer);
             System.out.println("JSON actualizado guardado en: " + filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 
     public void writeJsonToFile(List<HashMap<String, Object>> listJson, String filePath) {
         Gson gson = new Gson();
@@ -50,13 +48,13 @@ public class SetJsonInfo {
         }
     }
 
-    public void deleteJsonFromFile(String filePath, String nameSearch) {
+    public void deleteJsonFromFile(String filePath,String atributoSearch, String nameSearch) {
         GetJsonInfo getJsonInfo = new GetJsonInfo();
         List<HashMap<String, Object>> jsonList = getJsonInfo.getPlayersHashMap(filePath);
         int indexRemove = 0;
         for (int i = 0; i < jsonList.size(); i++) {
             HashMap<String, Object> jsonMap = jsonList.get(i);
-            if (jsonMap.get("name").equals(nameSearch)) {
+            if (jsonMap.get(atributoSearch).equals(nameSearch)) {
                 indexRemove = i;
             }
         }

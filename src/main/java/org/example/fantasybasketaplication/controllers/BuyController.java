@@ -56,8 +56,6 @@ public class BuyController extends FatherController {
         this.idGhrapic = idGhrapic;
     }
 
-
-
     /**
      * Getter del labelMoney
      * @return me devuelve un label
@@ -313,7 +311,7 @@ public class BuyController extends FatherController {
                         (String) hashMapPlayer.get("estado"),
                         (String) hashMapPlayer.get("pathPhotoName"),
                         (String) hashMapPlayer.get("pathPhotoTeam")
-                    )
+                    ), "savePlayers.json"
             );
 
             // Cambiar el label del money
@@ -332,7 +330,7 @@ public class BuyController extends FatherController {
             String lineas = getCsvInfo.readFromCsv();
             ArrayList<ArrayList<String>> datos = getCsvInfo.getInformationInArrayList(lineas);
             try{
-                datos = setCsvInfo.setInformationInArrayList(datos, new ArrayList<>(Arrays.asList(stringResult,"-" + price, (String) hashMapPlayer.get("name"))));
+                datos = setCsvInfo.setInformationInArrayList(datos, new ArrayList<>(Arrays.asList(stringResult, "-" + price, (String) hashMapPlayer.get("name"), "Comprado")));
                 setCsvInfo.writeToCsv(datos);
             } catch (Exception e) {
                 System.out.println("Error al guardar datos en el csv desde el BuyController: " + e.getMessage());
@@ -368,7 +366,7 @@ public class BuyController extends FatherController {
         if (!confirmation.equals("No")) {
             // eliminar el registro del json savePlayers
             SetJsonInfo setJsonInfo = new SetJsonInfo();
-            setJsonInfo.deleteJsonFromFile("savePlayers.json",imageButton.getUserData().toString());
+            setJsonInfo.deleteJsonFromFile("savePlayers.json","name",imageButton.getUserData().toString());
 
             // cambiar el estado del json data
             GetJsonInfo getJsonInfo = new GetJsonInfo();
@@ -385,25 +383,42 @@ public class BuyController extends FatherController {
             System.out.println(listHashMapPlayers);
             setJsonInfo.writeJsonToFile(listHashMapPlayers,"data.json");
 
-            // borrar el registro de ventas del csv
-
-
+            // Actualizar el registro de ventas del csv
             GetCsvInfo getCsvInfo = new GetCsvInfo();
 
             String lineas = getCsvInfo.readFromCsv();
 
+
             ArrayList<ArrayList<String>> datos = getCsvInfo.getInformationInArrayList(lineas);
-            int indexDelete = 0;
+
+            ArrayList<ArrayList<String>> datosComprados = new ArrayList<>();
+
             for (int i = 0; i < datos.size(); i++) {
-                if(datos.get(i).get(2).equals( (String) imageButton.getUserData())){
-                    indexDelete = i;
+                if (datos.get(i).getLast().equals("Comprado")){
+                    datosComprados.add(datos.get(i));
+                }
+            }
+
+
+            int indexChange = 0;
+            for (int i = 0; i < datosComprados.size(); i++) {
+                if(datosComprados.get(i).get(2).equals( (String) imageButton.getUserData())){
+                    indexChange = i;
                     break;
                 }
             }
-            String precio = datos.get(indexDelete).get(1).replaceAll("-","");
-            Double precioDouble = Double.valueOf(precio);
 
-            datos.remove(indexDelete);
+            // Aquí convierto los precios a Double y hago el calcúlo de la venta y lo convierto a un string "bonito"
+            // que se pueda ver en la pantalla
+            String precio = datosComprados.get(indexChange).get(1).replaceAll("-","");
+            Double precioDouble = Double.valueOf(precio);
+            Double doubleLabelMoney = doubleConvertLabel(getLabelMoney().getText());
+            Double result = doubleLabelMoney + precioDouble;
+            String stringResult = stringConvertLabel(result);
+
+            // Aquí añado los nuevos registros al campo
+            ArrayList<String> newDatos = new ArrayList<>(Arrays.asList(stringResult,"+"+precio,(String) imageButton.getUserData(),"Vendido"));
+            datos.add(newDatos);
 
             SetCsvInfo setCsvInfo = new SetCsvInfo();
             try {
@@ -416,9 +431,6 @@ public class BuyController extends FatherController {
 
 
             // cambiar el número del label
-            Double doubleLabelMoney = doubleConvertLabel(getLabelMoney().getText());
-            Double result = doubleLabelMoney + precioDouble;
-            String stringResult = stringConvertLabel(result);
             getLabelMoney().setText(stringResult);
 
             // cambiar el control y la imagen

@@ -62,9 +62,10 @@ public class TeamWindow extends StartWindow {
     }
 
 
-    public SelectionController startStageSelection() throws IOException {
+    public SelectionController startStageSelection(String position) throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/fantasybasketaplication/Scenes/SelectionWindow.fxml"));
+        loader.setController(new SelectionController(position));
         Parent root = loader.load();
 
         SelectionController controller = loader.getController();

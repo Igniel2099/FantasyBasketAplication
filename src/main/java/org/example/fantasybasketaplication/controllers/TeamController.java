@@ -8,11 +8,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import org.example.fantasybasketaplication.WindowsApp.TeamWindow;
+import org.example.fantasybasketaplication.information.GetJsonInfo;
+import org.example.fantasybasketaplication.information.Player;
+import org.example.fantasybasketaplication.information.SetJsonInfo;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 public class TeamController extends FatherController{
+
+    private SetJsonInfo setJsonInfo = new SetJsonInfo();
+
+    private GetJsonInfo getJsonInfo = new GetJsonInfo();
 
     @FXML
     private ImageView id_alero;
@@ -45,6 +53,22 @@ public class TeamController extends FatherController{
 
     @FXML
     private StackPane containerButtonPivot;
+
+    public SetJsonInfo getSetJsonInfo() {
+        return setJsonInfo;
+    }
+
+    public void setSetJsonInfo(SetJsonInfo setJsonInfo) {
+        this.setJsonInfo = setJsonInfo;
+    }
+
+    public GetJsonInfo getGetJsonInfo() {
+        return getJsonInfo;
+    }
+
+    public void setGetJsonInfo(GetJsonInfo getJsonInfo) {
+        this.getJsonInfo = getJsonInfo;
+    }
 
     public StackPane getContainerButtonBase() {
         return containerButtonBase;
@@ -155,6 +179,31 @@ public class TeamController extends FatherController{
         return  mapImagesContainer.get(searchId);
     }
 
+
+    public String getPositionContainer(String searchId){
+        HashMap<String,String> mapPositionContainer = new HashMap<>();
+
+        mapPositionContainer.put("containerButtonBase","Base");
+        mapPositionContainer.put("containerButtonEscolta","Escolta");
+        mapPositionContainer.put("containerButtonAlero","Alero");
+        mapPositionContainer.put("containerButtonAlaPivot","Ala-Pívot");
+        mapPositionContainer.put("containerButtonPivot","Pívot");
+
+        return  mapPositionContainer.get(searchId);
+    }
+
+    public StackPane getStackPaneWithPosition(String searchPosition){
+        HashMap<String,StackPane> hashMapStackPane = new HashMap<>();
+        hashMapStackPane.put("Base",getContainerButtonBase());
+        hashMapStackPane.put("Escolta",getContainerButtonEscolta());
+        hashMapStackPane.put("Alero",getContainerButtonAlero());
+        hashMapStackPane.put("Ala-Pívot",getContainerButtonAlaPivot());
+        hashMapStackPane.put("Pívot",getContainerButtonPivot());
+
+        return hashMapStackPane.get(searchPosition);
+    }
+
+
     /**
      * Este método cambia directamente la imagen del contenedor con la Imagen sacada del método selectImageTeamField
      * @param idSearch el identificador de la imagen relacionada que estoy buscando
@@ -180,7 +229,7 @@ public class TeamController extends FatherController{
         Object controller = null;
         try {
             if (buttonStackPane.getChildren().getFirst() instanceof ImageView) {
-                controller = teamWindow.startStageSelection();
+                controller = teamWindow.startStageSelection(getPositionContainer(idSpStr));
             } else if (buttonStackPane.getChildren().getFirst() instanceof VBox) {
                 controller = teamWindow.startStageEdit();
             }
@@ -203,9 +252,15 @@ public class TeamController extends FatherController{
                                 "/org/example/fantasybasketaplication/Images/imagenPerfil.png"
                         ).toExternalForm())
                 );
+
+                // Eliminar el anterior registro
+                getSetJsonInfo().deleteJsonFromFile("teamPlayer.json","position",getPositionContainer(idSpStr));
             } else if (election.equals("Replace")) {
+                // eliminar al registro anterior
+                getSetJsonInfo().deleteJsonFromFile("teamPlayer.json","position",getPositionContainer(idSpStr));
+
                 try{
-                    SelectionController newController = teamWindow.startStageSelection();
+                    SelectionController newController = teamWindow.startStageSelection(getPositionContainer(idSpStr));
 
                     VBox vBox = teamWindow.containerPlayerTeam(
                             newController.getPlayerSelected().getName(),
@@ -218,6 +273,18 @@ public class TeamController extends FatherController{
                     // Cambiar la imagen----------------------------------------------------------------------
                     changeImage(idSpStr,newController);
 
+                    // escribirlo
+                    getSetJsonInfo().addJsonToFile(getSetJsonInfo().convertFormatJson(
+                                    newController.getPlayerSelected().getName(),
+                                    newController.getPlayerSelected().getPosition(),
+                                    newController.getPlayerSelected().getPrice(),
+                                    newController.getPlayerSelected().getTeam(),
+                                    newController.getPlayerSelected().getEstado(),
+                                    newController.getPlayerSelected().getPathPhotoName(),
+                                    newController.getPlayerSelected().getPathPhotoTeam()
+                            ),"teamPlayer.json"
+                    );
+
 
                 }catch (IOException e){
                     e.printStackTrace();
@@ -225,6 +292,11 @@ public class TeamController extends FatherController{
             }
         } else if (controller instanceof SelectionController) {
             SelectionController selectionController = (SelectionController) controller;
+
+            // le mando la posición al selectionController
+            selectionController.setPosition(getPositionContainer(idSpStr));
+            System.out.println("posición obtenida del container: " + getPositionContainer(idSpStr));
+            System.out.println("posición obtenida del controlador: " + selectionController.getPosition());
 
             VBox vBox = teamWindow.containerPlayerTeam(
                     selectionController.getPlayerSelected().getName(),
@@ -236,6 +308,18 @@ public class TeamController extends FatherController{
 
             // Cambiar la imagen---------------------------------------------------------------
             changeImage(idSpStr,selectionController);
+
+            // Escribir en un json
+            getSetJsonInfo().addJsonToFile(getSetJsonInfo().convertFormatJson(
+                    selectionController.getPlayerSelected().getName(),
+                    selectionController.getPlayerSelected().getPosition(),
+                    selectionController.getPlayerSelected().getPrice(),
+                    selectionController.getPlayerSelected().getTeam(),
+                    selectionController.getPlayerSelected().getEstado(),
+                    selectionController.getPlayerSelected().getPathPhotoName(),
+                    selectionController.getPlayerSelected().getPathPhotoTeam()
+                ),"teamPlayer.json"
+            );
         }
     }
 
@@ -268,12 +352,35 @@ public class TeamController extends FatherController{
 
     @FXML
     public void initialize(){
-        getId_alero().setImage(new Image(getClass().getResource("/org/example/fantasybasketaplication/Images/imagenPerfil.png").toExternalForm()));
-        getId_base().setImage(new Image(getClass().getResource("/org/example/fantasybasketaplication/Images/imagenPerfil.png").toExternalForm()));
-        getId_pivot().setImage(new Image(getClass().getResource("/org/example/fantasybasketaplication/Images/imagenPerfil.png").toExternalForm()));
-        getId_ala_pivot().setImage(new Image(getClass().getResource("/org/example/fantasybasketaplication/Images/imagenPerfil.png").toExternalForm()));
-        getId_escolta().setImage(new Image(getClass().getResource("/org/example/fantasybasketaplication/Images/imagenPerfil.png").toExternalForm()));
 
+        TeamWindow teamWindow = new TeamWindow();
+
+        List<Player> playersList = getGetJsonInfo().getPlayersJson("teamPlayer.json");
+        if (playersList != null) {
+
+            for (Player player : playersList) {
+                StackPane stackPane = getStackPaneWithPosition(player.getPosition());
+
+                VBox vBox = teamWindow.containerPlayerTeam(
+                        player.getName(),
+                        player.getPathPhotoName(),
+                        player.getPosition());
+
+                stackPane.getChildren().clear();
+                stackPane.getChildren().add(vBox);
+
+                selectImageTeamField(stackPane.getId()).setImage(
+                        new Image(getClass().getResource(
+                                player.getPathPhotoName()
+                        ).toExternalForm())
+                );
+            }
+        }
+
+
+        // tengo que hacer otro json en el que guardo lo seleccionado y lo recupero por posiciónes ya que he conseguido que me filtre
+        // por posición, asi que solo necesito guardarlos normal y cada que inicie leer el archivo json poner cada cual en su respectiva
+        // posición y después crear la carta de cada personaje y relacionarlo con la foto.
     }
 
 }

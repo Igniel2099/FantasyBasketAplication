@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class SetCsvInfo {
     public ArrayList<ArrayList<String>> setInformationInArrayList(ArrayList<ArrayList<String>> data, ArrayList<String> newData) throws Exception {
-        if (newData.size() > 3){
-            throw new Exception("No puedes añadir una lista de datos mayor que 3");
+        if (newData.size() > 4){
+            throw new Exception("No puedes añadir una lista de datos mayor que 4");
         }
         data.add(newData);
 
@@ -18,8 +18,8 @@ public class SetCsvInfo {
     public void writeToCsv(ArrayList<ArrayList<String>> data) throws Exception {
 
         for (ArrayList<String> dato : data) {
-            if (dato.size() > 3){
-                throw new Exception("La lista de datos contiene una lista de datos mayor que 3");
+            if (dato.size() > 4){
+                throw new Exception("La lista de datos contiene una lista de datos mayor que 4");
             }
         }
 

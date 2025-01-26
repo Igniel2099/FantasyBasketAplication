@@ -159,9 +159,10 @@
                         </HBox>
                         <TableView fx:id="tableView" prefHeight="425.0" prefWidth="794.0">
                           <columns>
-                            <TableColumn fx:id="dineroColumn" prefWidth="288.8000114560127" text="Dinero Actual" />
-                            <TableColumn fx:id="gastoColumn" minWidth="0.0" prefWidth="268.8000030517578" text="Gasto" />
-                              <TableColumn fx:id="nombreJugadorColumn" prefWidth="228.7999267578125" text="Nombre del Jugador Comprado" />
+                            <TableColumn fx:id="dineroColumn" prefWidth="216.00002366304398" text="Dinero Actual" />
+                            <TableColumn fx:id="gastoColumn" minWidth="0.0" prefWidth="175.19998168945312" text="Gasto" />
+                              <TableColumn fx:id="nombreJugadorColumn" minWidth="0.0" prefWidth="188.800048828125" text="Nombre del Jugador" />
+                              <TableColumn fx:id="accionbancariaColumn" prefWidth="261.60003662109375" text="Acción Bancaria" />
                           </columns>
                         </TableView>
                      </children>

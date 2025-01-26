@@ -53,19 +53,20 @@ public class GetCsvInfo {
         return datos;
     }
 
-
+    // Esto me va petar porque he añadido una columna
     public static ObservableList<TableRowData> readCSV(String filePath) throws IOException {
         ObservableList<TableRowData> dataList = FXCollections.observableArrayList();
         List<String> lines = Files.readAllLines(Paths.get(filePath));
 
-        for (String line : lines) {
-            String[] values = line.split(",");
+        for (int i = 1; i < lines.size(); i++) {
+            String[] values = lines.get(i).split(",");
             // Asumimos que los valores están en el orden: DineroActual, Gasto, NombreDelJugador
             String dineroActual = values[0].trim();
             String gasto = values[1].trim();
             String nombreJugador = values[2].trim();
+            String accion = values[3].trim();
             // Creamos un objeto TableRowData con los valores leídos
-            dataList.add(new TableRowData(dineroActual, gasto, nombreJugador));
+            dataList.add(new TableRowData(dineroActual, gasto, nombreJugador, accion));
         }
 
         return dataList;

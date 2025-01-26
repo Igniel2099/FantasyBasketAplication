@@ -18,9 +18,12 @@ import org.example.fantasybasketaplication.information.Player;
 
 import javafx.scene.control.TableView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SelectionController {
+
+    private String position;
 
     private Stage primaryStage;
 
@@ -41,6 +44,20 @@ public class SelectionController {
     private TableColumn<Player, Double> columnPrice;
     @FXML
     private TableColumn<Player, String> columnTeam;
+
+
+    public SelectionController(String position) {
+        this.position = position;
+    }
+
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
 
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -136,8 +153,17 @@ public class SelectionController {
         GetJsonInfo getJsonInfo = new GetJsonInfo();
         List<Player> listPlayer = getJsonInfo.getPlayersJson("savePlayers.json");
 
+        List<Player> listPlayerFilterPosition = new ArrayList<>();
+        for (Player player : listPlayer) {
+            System.out.println("player position: " + player.getPosition());
+            System.out.println("controller position: " + getPosition());
+            if (player.getPosition().equals(getPosition())) {
+                listPlayerFilterPosition.add(player);
+            }
+        }
+
         // Datos de ejemplo
-        ObservableList<Player> players = FXCollections.observableArrayList(listPlayer);
+        ObservableList<Player> players = FXCollections.observableArrayList(listPlayerFilterPosition);
 
         tableSelection.setItems(players);
 

@@ -23,6 +23,9 @@ public class PurchaseRegisterController extends FatherController {
     private TableColumn<TableRowData, String> gastoColumn;
     @FXML
     private TableColumn<TableRowData, String> nombreJugadorColumn;
+    @FXML
+    private TableColumn<TableRowData, String> accionbancariaColumn;
+
 
     public TableView<TableRowData> getTableView() {
         return tableView;
@@ -56,6 +59,14 @@ public class PurchaseRegisterController extends FatherController {
         this.nombreJugadorColumn = nombreJugadorColumn;
     }
 
+    public TableColumn<TableRowData, String> getAccionbancariaColumn() {
+        return accionbancariaColumn;
+    }
+
+    public void setAccionbancariaColumn(TableColumn<TableRowData, String> accionbancariaColumn) {
+        this.accionbancariaColumn = accionbancariaColumn;
+    }
+
     public void handleBackClicked(MouseEvent event) {
         System.out.println("Back clicked");
         try{
@@ -74,7 +85,7 @@ public class PurchaseRegisterController extends FatherController {
         getDineroColumn().setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDineroActual()));
         getGastoColumn().setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGasto()));
         getNombreJugadorColumn().setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombreJugador()));
-
+        getAccionbancariaColumn().setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAccionBancaria()));
         // Asignar los datos a la tabla
         getTableView().setItems(dataList);
     }
